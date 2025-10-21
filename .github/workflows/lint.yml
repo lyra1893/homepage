@@ -29,7 +29,6 @@ jobs:
 
       - name: Install PHP Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-          bun install --quiet --frozen-lockfile
 
       - name: Install JavaScript Dependencies
         run: bun install --quiet --frozen-lockfile
