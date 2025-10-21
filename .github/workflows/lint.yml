@@ -37,7 +37,7 @@ jobs:
         run: composer run -- format:check
 
       - name: Format Frontend
-        run: bun run --bun -- format:check
+        run: bun --bun run -- format:check
 
       - name: Lint Frontend
-        run: bun run --bun -- lint:check
+        run: bun --bun run -- lint:check

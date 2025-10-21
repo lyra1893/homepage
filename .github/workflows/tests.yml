@@ -38,7 +38,7 @@ jobs:
         run: composer run -- setup
 
       - name: Build Frontend
-        run: bun run --bun -- build
+        run: bun --bun run -- build
 
       - name: Tests
         run: composer run -- test
