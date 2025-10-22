@@ -50,7 +50,7 @@
         ],
         "format": [
             "pint"
-        ], 
+        ],
         "format:check": [
             "pint --test"
         ],

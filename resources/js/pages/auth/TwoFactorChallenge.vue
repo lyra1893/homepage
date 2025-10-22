@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import InputError from '@/components/InputError.vue'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import {
     PinInput,
     PinInputGroup,
     PinInputSlot,
-} from '@/components/ui/pin-input';
-import AuthLayout from '@/layouts/AuthLayout.vue';
-import { store } from '@/routes/two-factor/login';
-import { Form, Head } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
+} from '@/components/ui/pin-input'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import { store } from '@/routes/two-factor/login'
+import { Form, Head } from '@inertiajs/vue3'
+import { computed, ref } from 'vue'
 
 interface AuthConfigContent {
-    title: string;
-    description: string;
-    toggleText: string;
+    title: string
+    description: string
+    toggleText: string
 }
 
 const authConfigContent = computed<AuthConfigContent>(() => {
@@ -25,7 +25,7 @@ const authConfigContent = computed<AuthConfigContent>(() => {
             description:
                 'Please confirm access to your account by entering one of your emergency recovery codes.',
             toggleText: 'login using an authentication code',
-        };
+        }
     }
 
     return {
@@ -33,19 +33,19 @@ const authConfigContent = computed<AuthConfigContent>(() => {
         description:
             'Enter the authentication code provided by your authenticator application.',
         toggleText: 'login using a recovery code',
-    };
-});
+    }
+})
 
-const showRecoveryInput = ref<boolean>(false);
+const showRecoveryInput = ref<boolean>(false)
 
 const toggleRecoveryMode = (clearErrors: () => void): void => {
-    showRecoveryInput.value = !showRecoveryInput.value;
-    clearErrors();
-    code.value = [];
-};
+    showRecoveryInput.value = !showRecoveryInput.value
+    clearErrors()
+    code.value = []
+}
 
-const code = ref<number[]>([]);
-const codeValue = computed<string>(() => code.value.join(''));
+const code = ref<number[]>([])
+const codeValue = computed<string>(() => code.value.join(''))
 </script>
 
 <template>

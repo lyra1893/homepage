@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
-import { Form } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController'
+import { Form } from '@inertiajs/vue3'
+import { ref } from 'vue'
 
 // Components
-import HeadingSmall from '@/components/HeadingSmall.vue';
-import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
+import HeadingSmall from '@/components/HeadingSmall.vue'
+import InputError from '@/components/InputError.vue'
+import { Button } from '@/components/ui/button'
 import {
     Dialog,
     DialogClose,
@@ -16,11 +16,11 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
-const passwordInput = ref<InstanceType<typeof Input> | null>(null);
+const passwordInput = ref<InstanceType<typeof Input> | null>(null)
 </script>
 
 <template>
@@ -89,8 +89,8 @@ const passwordInput = ref<InstanceType<typeof Input> | null>(null);
                                     variant="secondary"
                                     @click="
                                         () => {
-                                            clearErrors();
-                                            reset();
+                                            clearErrors()
+                                            reset()
                                         }
                                     "
                                 >

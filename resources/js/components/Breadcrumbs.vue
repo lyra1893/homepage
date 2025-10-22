@@ -6,17 +6,17 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import { Link } from '@inertiajs/vue3';
+} from '@/components/ui/breadcrumb'
+import { Link } from '@inertiajs/vue3'
 
 interface BreadcrumbItemType {
-    title: string;
-    href?: string;
+    title: string
+    href?: string
 }
 
 defineProps<{
-    breadcrumbs: BreadcrumbItemType[];
-}>();
+    breadcrumbs: BreadcrumbItemType[]
+}>()
 </script>
 
 <template>
