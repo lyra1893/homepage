@@ -5,16 +5,16 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { urlIsActive } from '@/lib/utils';
-import { type NavItem } from '@/types';
-import { Link, usePage } from '@inertiajs/vue3';
+} from '@/components/ui/sidebar'
+import { urlIsActive } from '@/lib/utils'
+import { type NavItem } from '@/types'
+import { Link, usePage } from '@inertiajs/vue3'
 
 defineProps<{
-    items: NavItem[];
-}>();
+    items: NavItem[]
+}>()
 
-const page = usePage();
+const page = usePage()
 </script>
 
 <template>

@@ -1,48 +1,48 @@
 <script setup lang="ts">
-import AlertError from '@/components/AlertError.vue';
-import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
+import AlertError from '@/components/AlertError.vue'
+import InputError from '@/components/InputError.vue'
+import { Button } from '@/components/ui/button'
 import {
     Dialog,
     DialogContent,
     DialogDescription,
     DialogHeader,
     DialogTitle,
-} from '@/components/ui/dialog';
+} from '@/components/ui/dialog'
 import {
     PinInput,
     PinInputGroup,
     PinInputSlot,
-} from '@/components/ui/pin-input';
-import { useTwoFactorAuth } from '@/composables/useTwoFactorAuth';
-import { confirm } from '@/routes/two-factor';
-import { Form } from '@inertiajs/vue3';
-import { useClipboard } from '@vueuse/core';
-import { Check, Copy, Loader2, ScanLine } from 'lucide-vue-next';
-import { computed, nextTick, ref, watch } from 'vue';
+} from '@/components/ui/pin-input'
+import { useTwoFactorAuth } from '@/composables/useTwoFactorAuth'
+import { confirm } from '@/routes/two-factor'
+import { Form } from '@inertiajs/vue3'
+import { useClipboard } from '@vueuse/core'
+import { Check, Copy, Loader2, ScanLine } from 'lucide-vue-next'
+import { computed, nextTick, ref, watch } from 'vue'
 
 interface Props {
-    requiresConfirmation: boolean;
-    twoFactorEnabled: boolean;
+    requiresConfirmation: boolean
+    twoFactorEnabled: boolean
 }
 
-const props = defineProps<Props>();
-const isOpen = defineModel<boolean>('isOpen');
+const props = defineProps<Props>()
+const isOpen = defineModel<boolean>('isOpen')
 
-const { copy, copied } = useClipboard();
+const { copy, copied } = useClipboard()
 const { qrCodeSvg, manualSetupKey, clearSetupData, fetchSetupData, errors } =
-    useTwoFactorAuth();
+    useTwoFactorAuth()
 
-const showVerificationStep = ref(false);
-const code = ref<number[]>([]);
-const codeValue = computed<string>(() => code.value.join(''));
+const showVerificationStep = ref(false)
+const code = ref<number[]>([])
+const codeValue = computed<string>(() => code.value.join(''))
 
-const pinInputContainerRef = ref<HTMLElement | null>(null);
+const pinInputContainerRef = ref<HTMLElement | null>(null)
 
 const modalConfig = computed<{
-    title: string;
-    description: string;
-    buttonText: string;
+    title: string
+    description: string
+    buttonText: string
 }>(() => {
     if (props.twoFactorEnabled) {
         return {
@@ -50,7 +50,7 @@ const modalConfig = computed<{
             description:
                 'Two-factor authentication is now enabled. Scan the QR code or enter the setup key in your authenticator app.',
             buttonText: 'Close',
-        };
+        }
     }
 
     if (showVerificationStep.value) {
@@ -58,7 +58,7 @@ const modalConfig = computed<{
             title: 'Verify Authentication Code',
             description: 'Enter the 6-digit code from your authenticator app',
             buttonText: 'Continue',
-        };
+        }
     }
 
     return {
@@ -66,46 +66,46 @@ const modalConfig = computed<{
         description:
             'To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app',
         buttonText: 'Continue',
-    };
-});
+    }
+})
 
 const handleModalNextStep = () => {
     if (props.requiresConfirmation) {
-        showVerificationStep.value = true;
+        showVerificationStep.value = true
 
         nextTick(() => {
-            pinInputContainerRef.value?.querySelector('input')?.focus();
-        });
+            pinInputContainerRef.value?.querySelector('input')?.focus()
+        })
 
-        return;
+        return
     }
 
-    clearSetupData();
-    isOpen.value = false;
-};
+    clearSetupData()
+    isOpen.value = false
+}
 
 const resetModalState = () => {
     if (props.twoFactorEnabled) {
-        clearSetupData();
+        clearSetupData()
     }
 
-    showVerificationStep.value = false;
-    code.value = [];
-};
+    showVerificationStep.value = false
+    code.value = []
+}
 
 watch(
     () => isOpen.value,
     async (isOpen) => {
         if (!isOpen) {
-            resetModalState();
-            return;
+            resetModalState()
+            return
         }
 
         if (!qrCodeSvg.value) {
-            await fetchSetupData();
+            await fetchSetupData()
         }
     },
-);
+)
 </script>
 
 <template>
